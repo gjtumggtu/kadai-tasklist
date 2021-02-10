@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 @if (count($errors) > 0)
         <ul class="alert alert-danger" role="alert">
             @foreach ($errors->all() as $error)
@@ -8,6 +9,7 @@
             @endforeach
         </ul>
     @endif
+    
 <h1>タスク新規作成ページ</h1>
 
     <div class="row">
