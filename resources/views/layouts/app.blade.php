@@ -8,7 +8,7 @@
     </head>
 
     <body>
-        <header class="mb-4">
+       <header class="mb-4">
             <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
                 {{-- トップページへのリンク --}}
                 <a class="navbar-brand" href="/">TaskBoard</a>
@@ -20,8 +20,6 @@
                 <div class="collapse navbar-collapse" id="nav-bar">
                     <ul class="navbar-nav mr-auto"></ul>
                     <ul class="navbar-nav">
-                        {{-- メッセージ作成ページへのリンク --}}
-                        <li class="nav-item">{!! link_to_route('tasks.create', '新規メッセージの投稿', [], ['class' => 'nav-link']) !!}</li>
                     </ul>
                 </div>
             </nav>
