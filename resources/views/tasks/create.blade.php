@@ -10,7 +10,7 @@
         </ul>
     @endif
     
-<h1>タスク新規作成ページ</h1>
+<h1>新規タスク投稿</h1>
 
     <div class="row">
         <div class="col-6">
@@ -26,7 +26,7 @@
                     {!! Form::text('content', null, ['class' => 'form-control']) !!}
                 </div>
 
-                {!! Form::submit('作成', ['class' => 'btn btn-primary']) !!}
+                {!! Form::submit('投稿', ['class' => 'btn btn-primary']) !!}
 
             {!! Form::close() !!}
         </div>

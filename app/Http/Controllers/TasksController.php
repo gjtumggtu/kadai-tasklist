@@ -61,14 +61,15 @@ class TasksController extends Controller
 
          // フォームから送られてきたcontentはrequestに入っているので、requestから取り出して登録
         $task = new Task;
-        $task->status = $request->status;
+        $task->status  = $request->status;
         $task->content = $request->content;
+        $task->user_id = auth()->id();
         $task->save();
-
-        $request->user()->tasks()->create([
-            'status'  => $request->status,
-            'content' => $request->content,
-        ]);
+        
+        // $request->user()->tasks()->create([
+        //     'status'  => $request->status,
+        //     'content' => $request->content,
+        // ]);
         // トップページへリダイレクトさせる
         return redirect('/');
     }
@@ -82,13 +83,10 @@ class TasksController extends Controller
     public function show($id)
     {
         // idの値でメッセージを検索して取得
-        $task = Task::find($id);
+        // $task = Task::find($id);
         $task = \App\Task::find($id);
 
-        // メッセージ詳細ビューでそれを表示
-        return view('tasks.show', [
-            'task' => $task,
-        ]);
+        // return view('tasks.show', ['task' => $task,]);
          // ログインユーザー = タスク作成者なら表示画面へ
         if (\Auth::id() === $task->user_id) {
             return view('tasks.show', ['task' => $task,]);
@@ -134,7 +132,7 @@ class TasksController extends Controller
         $task->status  = $request->status;
         $task->content = $request->content;
         $task->save();
-
+        
         $task = \App\Task::find($id);
 
         // ログインユーザー = タスク作成者なら編集処理へ
@@ -157,15 +155,14 @@ class TasksController extends Controller
     public function destroy($id)
     {
         $task = Task::find($id);
-        $task->delete();
-
+        // $task->delete();
+        
         $task = \App\Task::find($id);
         if (\Auth::id() === $task->user_id) {
             $task->delete();
         }
 
         // トップページへリダイレクトさせる
-        return back();
-        // return redirect('/');
+        return redirect('/');
     }
 }
